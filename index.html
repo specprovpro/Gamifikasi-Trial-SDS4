@@ -270,7 +270,7 @@ function end(){show('sEnd');const p=good;
  const r=p>=8?['Master Burger Feedback 🏆','Burgermu lezat! Kamu sudah paham cara memberi kritik yang menguatkan.']:p>=5?['Chef Handal 👨‍🍳','Sudah enak! Tinggal rapikan beberapa lapisan.']:['Koki Magang 🍳','Masih ada lapisan yang gosong. Yuk coba lagi!'];
  $('eH').textContent='Hasil masakan, '+name;$('eR').textContent=r[0];$('eS').textContent=p+' / 9 lapisan tepat';
  $('eRows').innerHTML=S.map((s,i)=>'<div class="mr"><span>'+(i+1)+'. '+s.who+'</span><em>'+res[i].map((v,j)=>'<u class="'+(v?'':'x')+'" title="'+L[j]+'">'+(v?'✓':'✗')+'</u>').join('')+'</em></div>').join('');
- say($('eSay'),r[1]+' Ingat, '+name+': bun yang hangat membuat patty kritik lebih mudah ditelan. Pujian tulus, fakta tanpa menyerang, lalu dukungan!',$('pkE'));
+ say($('eSay'),r[1]+' Ingat, '+name+': Bun yang hangat membuat patty kritik lebih mudah ditelan. Pujian tulus, fakta tanpa menyerang, lalu dukungan!',$('pkE'));
  notifyLMS()}
 $('again').onclick=()=>{clearInterval(tm);$('nm').value='';show('sLogin');say($('lSay'),'Halo lagi! Mau coba memasak burger feedback sekali lagi? Tulis namanya dulu, ya.',$('pkL'))};
 /* ===== Musik latar orisinal (jazz-swing ceria), dibuat dengan Web Audio ===== */
