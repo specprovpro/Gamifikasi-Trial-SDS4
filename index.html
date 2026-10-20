@@ -37,7 +37,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-of
 .bub::before{content:"";position:absolute;width:14px;height:14px;background:#fff;border:solid var(--ink);border-width:0 0 3px 3px;left:-9px;top:26px;transform:rotate(45deg)}
 .bub.u::before{left:70px;top:-9px;border-width:3px 0 0 3px}
 .who{display:inline-block;font-family:var(--round);font-weight:600;font-size:12px;background:var(--red);color:#fff;border:2px solid var(--ink);border-radius:99px;padding:0 9px;margin-bottom:3px}
-.said{font-size:17px;line-height:1.18}
+.said{font-size:19px;line-height:1.16}
 /* login */
 .sign{font-family:var(--round);font-weight:700;text-align:center;background:var(--red);color:#fff;border:3px solid var(--ink);border-radius:14px;box-shadow:0 5px 0 var(--ink);padding:8px 14px;transform:rotate(-2deg);line-height:1}
 .sign small{display:block;font-size:13px;font-weight:500;color:var(--mus);margin-bottom:3px}
@@ -87,11 +87,11 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-of
 .sl.act{background:#fff;border-color:var(--ink);color:var(--ink)}
 .sl.ok{color:#0e7a47}.sl.no{color:#b3261e}
 .pn{width:100%;flex:1;min-height:0;margin-top:9px}
-.pr{font-family:var(--hand);font-size:19px;line-height:1;margin:0 3px 5px}
-.opt{display:flex;align-items:center;gap:8px;width:100%;text-align:left;margin-bottom:6px;padding:5px 9px;background:var(--cream);border:2.5px solid var(--ink);border-radius:12px;box-shadow:0 3px 0 var(--ink);transition:transform .08s}
+.pr{font-family:var(--hand);font-size:21px;line-height:1;margin:0 3px 5px}
+.opt{display:flex;align-items:center;gap:8px;width:100%;text-align:left;margin-bottom:6px;padding:6px 10px;background:var(--cream);border:2.5px solid var(--ink);border-radius:12px;box-shadow:0 3px 0 var(--ink);transition:transform .08s}
 .opt:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
-.opt i{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--ink);background:var(--mus);display:grid;place-items:center;font-style:normal;font-family:var(--round);font-weight:700;font-size:12px}
-.opt span{font-size:15px;line-height:1.08}
+.opt i{flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--ink);background:var(--mus);display:grid;place-items:center;font-style:normal;font-family:var(--round);font-weight:700;font-size:12px}
+.opt span{font-size:17px;line-height:1.1}
 #fb{display:none}
 #fb .btn{margin-top:9px}
 /* akhir */
@@ -129,7 +129,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-of
 <!-- 2. Briefing -->
 <section class="s" id="sBrief">
   <div class="pk" id="pkB" style="width:170px;margin-top:6px"></div>
-  <div class="bub u" style="margin:12px 0 14px"><span class="who">Pak Reno · Head Chef Feedback</span><p class="said" id="bSay" style="font-size:18px"></p></div>
+  <div class="bub u" style="margin:12px 0 14px"><span class="who">Pak Reno · Head Chef Feedback</span><p class="said" id="bSay" style="font-size:21px"></p></div>
   <button class="btn big" id="toGuide">Instruksi dan Petunjuk →</button>
 </section>
 
@@ -158,7 +158,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-of
   <div class="pn">
     <div id="ch"><p class="pr" id="pr"></p><div id="opts"></div></div>
     <div id="fb"><div class="row"><div class="pk" id="pkF" style="width:92px"></div>
-      <div class="bub" style="flex:1"><span class="who">Pak Reno</span><p class="said" id="fSay" style="font-size:16px"></p></div></div>
+      <div class="bub" style="flex:1"><span class="who">Pak Reno</span><p class="said" id="fSay" style="font-size:18px"></p></div></div>
       <button class="btn big" id="nxt">Lanjut</button></div>
   </div>
 </section>
@@ -168,7 +168,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-of
   <div class="res"><h2 id="eH">Hasil masakan</h2><span class="rk" id="eR"></span>
     <div><span class="sc" id="eS"></span></div><div id="eRows"></div></div>
   <div class="row" style="margin-top:14px"><div class="pk" id="pkE" style="width:92px"></div>
-    <div class="bub" style="flex:1"><span class="who">Pak Reno</span><p class="said" id="eSay" style="font-size:16px"></p></div></div>
+    <div class="bub" style="flex:1"><span class="who">Pak Reno</span><p class="said" id="eSay" style="font-size:17px"></p></div></div>
   <button class="btn big" id="again" style="margin-top:14px">Main Lagi</button>
 </section>
 
@@ -263,12 +263,15 @@ function pick(i){const x=S[sc].s[st][i],ok=!!x[1];
  $('nxt').textContent=st<2?'Lanjut: '+L[st+1]:(sc<2?'Skenario berikutnya':'Lihat hasil')}
 $('nxt').onclick=()=>{clearInterval(tm);if(st<2){st++;step()}else if(sc<2){sc++;loadSc()}else end()};
 
+function notifyLMS(){
+ try{window.parent.postMessage("scoreBarFound","*")}catch(e){console.warn("LMS postMessage (parent) gagal.",e)}
+ try{window.top.postMessage("scoreBarFound","*")}catch(e){console.warn("LMS postMessage (top) gagal.",e)}}
 function end(){show('sEnd');const p=good;
  const r=p>=8?['Master Burger Feedback 🏆','Burgermu lezat! Kamu sudah paham cara memberi kritik yang menguatkan.']:p>=5?['Chef Handal 👨‍🍳','Sudah enak! Tinggal rapikan beberapa lapisan.']:['Koki Magang 🍳','Masih ada lapisan yang gosong. Yuk coba lagi!'];
  $('eH').textContent='Hasil masakan, '+name;$('eR').textContent=r[0];$('eS').textContent=p+' / 9 lapisan tepat';
  $('eRows').innerHTML=S.map((s,i)=>'<div class="mr"><span>'+(i+1)+'. '+s.who+'</span><em>'+res[i].map((v,j)=>'<u class="'+(v?'':'x')+'" title="'+L[j]+'">'+(v?'✓':'✗')+'</u>').join('')+'</em></div>').join('');
  say($('eSay'),r[1]+' Ingat, '+name+': bun yang hangat membuat patty kritik lebih mudah ditelan. Pujian tulus, fakta tanpa menyerang, lalu dukungan!',$('pkE'));
- try{parent.postMessage('scoreBarFound','*')}catch(e){}}
+ notifyLMS()}
 $('again').onclick=()=>{clearInterval(tm);$('nm').value='';show('sLogin');say($('lSay'),'Halo lagi! Mau coba memasak burger feedback sekali lagi? Tulis namanya dulu, ya.',$('pkL'))};
 /* ===== Musik latar orisinal (jazz-swing ceria), dibuat dengan Web Audio ===== */
 let AC,mg,nb,tempo=104,s16=0,nT=0,mOn=true;
